@@ -8,6 +8,7 @@ def canUnlockAll(boxes):
     (indices) to other boxes can be unlocked given that the first
     box is unlocked.
     """
+
     n = len(boxes)
     seen_boxes = set([0])
     unseen_boxes = set(boxes[0]).difference(set([0]))
