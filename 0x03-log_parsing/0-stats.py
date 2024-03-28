@@ -1,18 +1,18 @@
 #!/usr/bin/python3
-'''A script for parsing HTTP request logs.
-'''
+"""A script for parsing HTTP request logs.
+"""
 import re
 
 
 def parse_log_line(log_line):
-    '''Parses a line of an HTTP request log and extracts relevant information.
+    """Parses a line of an HTTP request log and extracts relevant information.
 
     Args:
         log_line (str): A line from the HTTP request log.
 
     Returns:
         dict: A dictionary containing status code and file size.
-    '''
+    """
     pattern = (
         r'\s*(?P<ip>\S+)\s*',
         r'\s*\[(?P<date>\d+\-\d+\-\d+ \d+:\d+:\d+\.\d+)\]',
@@ -34,7 +34,7 @@ def parse_log_line(log_line):
 
 
 def update_metrics(log_line, current_total_size, status_code_counts):
-    '''Updates the metrics based on a given HTTP request log line.
+    """Updates the metrics based on a given HTTP request log line.
 
     Args:
         log_line (str): A line from the HTTP request log.
@@ -43,7 +43,7 @@ def update_metrics(log_line, current_total_size, status_code_counts):
 
     Returns:
         int: The new total file size.
-    '''
+    """
     log_info = parse_log_line(log_line)
     status_code = log_info.get('status_code', '0')
     if status_code in status_code_counts.keys():
@@ -53,12 +53,12 @@ def update_metrics(log_line, current_total_size, status_code_counts):
 
 
 def print_statistics(total_file_size, status_codes_counts):
-    '''Prints the accumulated statistics of the HTTP request log.
+    """Prints the accumulated statistics of the HTTP request log.
 
     Args:
         total_file_size (int): The total file size.
         status_code_counts (dict): Dictionary counts for each status code.
-    '''
+    """
     print('File size: {:d}'.format(total_file_size), flush=True)
     for status_code in sorted(status_codes_counts.keys()):
         num = status_codes_counts.get(status_code, 0)
@@ -67,8 +67,8 @@ def print_statistics(total_file_size, status_codes_counts):
 
 
 def start_log_parser():
-    '''Starts the log parser.
-    '''
+    """Starts the log parser.
+    """
     line_num = 0
     total_file_size = 0
     status_codes_stats = {
@@ -98,4 +98,3 @@ def start_log_parser():
 
 if __name__ == '__main__':
     start_log_parser()
-
