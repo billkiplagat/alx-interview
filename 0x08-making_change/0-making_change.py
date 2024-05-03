@@ -1,4 +1,6 @@
-king change module.
+#!/usr/bin/python3
+"""
+Making change module.
 """
 
 
@@ -12,7 +14,7 @@ def makeChange(coins, total):
 
     Returns:
         int: The fewest number of coins needed to meet the total amount.
-            Returns -1 if the total cannot be met by any coins combination.
+            Returns -1 if the total cannot be met by any coins' combination.
     """
     if total <= 0:
         return 0
